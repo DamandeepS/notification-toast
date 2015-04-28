@@ -21,7 +21,6 @@
   ],
   "dependencies": {
     "polymer": "polymer/polymer#~0.8.0",
-    "webcomponentsjs": "webcomponents/webcomponentsjs#~0.6.1",
-    "core-icons": "polymer/core-icons#~0.5.5"
+    "webcomponentsjs": "webcomponents/webcomponentsjs#~0.6.1"
   }
 }

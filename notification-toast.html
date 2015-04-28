@@ -1,0 +1,119 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<dom-module id="notification-toast">
+    <style>
+        :host {
+            display: block;
+            padding: 20px 10px;
+            margin: 0;
+            background: #64c523;
+            color: #fff;
+            font-weight: 300;
+            font-size: 20px;
+            font-family: Roboto, Helvetica, sans-serif, Arial;
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 200px;
+            border: 1px solid #64c523;
+        }
+        
+        div.overlay {
+            background: transparent;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        div.close-area {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            line-height: 0;
+        }
+        
+        button#close {
+            background: none;
+            padding: 0;
+            border-top: 10px solid #fff;
+            border-right: 10px solid #fff;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            margin: 0;
+            /*
+            color: #fff;
+            font-weight: 300;
+            font-size: 20px;
+            font-family: Roboto, Helvetica, sans-serif, Arial;
+*/
+        }
+    </style>
+    <template>
+        <content id="content"></content>
+        <div class="overlay" hidden="{{noselect}}"></div>
+        <div class="close-area">
+            <button id="close" on-click="close" type="button">
+            </button>
+        </div>
+    </template>
+</dom-module>
+<script>
+    Polymer({
+        is: "notification-toast",
+        ready: function () {
+            if (typeof (this.bg) !== "undefined") {
+                this.style.background = this.bg;
+                this.style.borderColor = this.bg;
+            }
+            if (typeof (this.color) !== "undefined") {
+                this.style.color = this.color;
+                this.$.close.borderTopColor = this.color;
+                this.$.close.borderRightColor = this.color;
+            }
+            if (typeof (this.noselect) !== "undefined") {
+                this.noselect = true;
+            }
+            if (typeof (this.timeout) !== "undefined") {
+                var $this = this;
+                setTimeout(function () {
+                    $this.close();
+                }, parseInt(this.timeout));
+            } else {
+                var $this = this;
+                setTimeout(function () {
+                    $this.close();
+                }, 5000);
+            }
+            console.log(this.bg, this.color, this.noselect, this.timeout);
+        },
+        properties: {
+            timeout: "",
+            bg: "", //background for banner
+            color: "", //text-color for banner
+            noselect: false //noselect means the banner is not selectable
+        },
+        close: function () {
+            var i = 50;
+            this.fade(this, 50)
+        },
+        fade: function ($this, i) {
+            setTimeout(function () {
+                $this.style.opacity = (i / 50);
+                i--;
+                if (i == 0) {
+                    $this.remove();
+                    return;
+                }
+                $this.fade($this, i);
+            }, 10)
+        }
+
+
+        //       
+    });
+</script>

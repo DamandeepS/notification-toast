@@ -1,0 +1,27 @@
+{
+  "name": "notification-toast",
+  "version": "0.0.1",
+  "authors": [
+    "Damandeep Singh <mail@damandeepsingh.com>"
+  ],
+  "description": "Just a simple Alert Banner.",
+  "keywords": [
+    "Alert",
+    "Banner",
+    "Damandeep",
+    "Singh"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#~0.8.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#~0.6.1",
+    "core-icons": "polymer/core-icons#~0.5.5"
+  }
+}

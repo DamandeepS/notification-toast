@@ -80,6 +80,9 @@
             }
             if (typeof (this.timeout) !== "undefined") {
                 var $this = this;
+                if(this.timeout=='0') {
+                    return;
+                }
                 setTimeout(function () {
                     $this.close();
                 }, parseInt(this.timeout));
